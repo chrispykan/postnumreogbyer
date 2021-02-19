@@ -4,6 +4,12 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+
+####ignore to Hide Sensitive information ###
+/resources/application.propreties/
+src/main/resources/application.properties
+
+
 ### STS ###
 .apt_generated
 .classpath
