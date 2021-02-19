@@ -40,17 +40,33 @@ public class PostnumreogbyerApplication {
             //Obj ResultSet to use to point to * from the Danske_Postnumre table in my db
             ResultSet rs = stmt.executeQuery("select * from Danske_Postnumre");
 
+            //Request user input
+            System.out.println("Enter a ZIPCODE in DENMARK: ");
+
+            //"zipInput" to use to scan next token of input as an int
+            int zipInput = sc.nextInt();
+
             while (rs.next()) {
 
                 //Assign variables to postnummer and by columns in table//
-                //String Zipcode = rs.getString("postnummer"); If using Zipcode as a string
                 int Zipcode = rs.getInt("postnummer"); //using Zipcode as int
-
                 String City = rs.getString("by");
 
-                // Print ALL Info from column labels
-                System.out.println(" "+ Zipcode +" "+City);
+
+                //Match user input to a specific result (using == operator because we're using int)
+                if(rs.getInt("postnummer") == zipInput){
+                    System.out.println("The ZIP C2720ode " + zipInput + " is "+ City);
+                }//if END
+
             }//while END
+
+            //close scanner
+            sc.close();
+            System.out.println("\nScanner Closed.");
+
+            //close connection
+            con.close();
+            System.out.println("Database disconnected.");
 
         }//try END
 
@@ -59,6 +75,7 @@ public class PostnumreogbyerApplication {
             System.out.println("An error occurred. Invalid user or password");
             ex.printStackTrace();
         }//catch END
+
 
         finally {
             if (con != null) {
